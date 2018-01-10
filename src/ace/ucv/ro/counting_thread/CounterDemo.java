@@ -16,12 +16,12 @@ public class CounterDemo {
 
 		in.close();
 
-		Semaphore semaphore = new Semaphore(1);
+		Semaphore semaphore = new Semaphore(maxThreads);
 
 		Thread[] threads = new Thread[maxThreads];
 
 		for (int i = 0; i < maxThreads; i++) {
-			threads[i] = new CountingThread(semaphore, "Thread " + i, limit, (int) Math.ceil(limit/maxThreads));
+			threads[i] = new CountingThread(semaphore, "Thread " + i, limit);
 		}
 
 		for (int i = 0; i < maxThreads; i++) {
